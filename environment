@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+export CONTECO_LABEL="Conteco base KZ stack"
+export CONTECO_DESCRIPTION="The ContEco base KZ stack."
+
+export CONTECO_TYPE="stack"
+export CONTECO_NAME="kz"
+export CONTECO_TAG="v1.0.0"
+
+export CONTECO_BASE="stack.base"
+export CONTECO_BUILD="image"

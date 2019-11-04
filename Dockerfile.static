@@ -1,0 +1,27 @@
+##### BEGIN image/Dockerfile/image-header #####
+FROM vcwebio/conteco.stack.base AS base
+##### END image/Dockerfile/image-header #####
+
+##### BEGIN image/Dockerfile/conteco #####
+COPY ./conteco/ /conteco/
+RUN chmod -R +x /conteco/bin && rm -rf /conteco/repo
+COPY ./ /conteco/repo/
+##### END image/Dockerfile/conteco #####
+
+##### BEGIN image/Dockerfile/build-instructions #####
+ENV CONTECO_ENTRYPOINT "bash"
+##### END image/Dockerfile/build-instructions #####
+
+##### BEGIN image/Dockerfile/env-labels-footer #####
+ENV CONTECO_NAME="kz" \
+    CONTECO_TAG="v1.0.0" \
+    CONTECO_BASE="stack.base" \
+    CONTECO_BUILD="image"
+LABEL io.vcweb.name="kz" \
+      io.vcweb.tag="v1.0.0" \
+      io.vcweb.base="stack.base" \
+      io.vcweb.build="image" \
+      io.vcweb.label="Conteco base KZ stack" \
+      io.vcweb.description="The ContEco base KZ stack." \
+      io.vcweb.docker.cmd.help="docker run vcwebio/conteco.stack.kz --help" 
+##### END image/Dockerfile/env-labels-footer #####
