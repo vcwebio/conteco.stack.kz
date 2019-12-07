@@ -7,9 +7,9 @@ services:
     image: ${CONTECO_REGISTRY}${CONTECO_REALM}/${CONTECO_ECOSYSTEM}.zookeeper.base:5.3.1
     environment: ['ZOOKEEPER_CLIENT_PORT=2181','ZOOKEEPER_TICK_TIME=2000']
     command: []
-    volumes: ['${CONTECO_DC_ZOOKEEPER_VOLUMES_NAME}:/var/lib/zookeeper/data']
-    ports: [${CONTECO_DC_ZOOKEEPER_PORTS}]
-    networks: [${CONTECO_DC_ZOOKEEPER_NETWORKS}]
+    volumes: ['${CONTECO_TYPE}_zookeeper_volume:/var/lib/zookeeper/data']
+    ports: []
+    networks: [${CONTECO_TYPE}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -19,7 +19,7 @@ services:
         reservations:
           cpus: '${CONTECO_DC_ZOOKEEPER_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
           memory: '${CONTECO_DC_ZOOKEEPER_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-      labels: [${CONTECO_DC_ZOOKEEPER_DEPLOY_LABELS}]
+      labels: []
 # END SERVICE zookeeper.base
 
 # START SERVICE kafka.base
@@ -27,9 +27,9 @@ services:
     image: ${CONTECO_REGISTRY}${CONTECO_REALM}/${CONTECO_ECOSYSTEM}.kafka.base:5.3.1
     environment: ['KAFKA_HEAP_OPTS=-Xmx${CONTECO_DC_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${CONTECO_DC_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}','KAFKA_BROKER_ID=1','KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181','KAFKA_ADVERTISED_LISTENERS=OVERLAY://kafka:9092${CONTECO_DC_KAFKA_KAFKA_ADVERTISED_LISTENERS}','KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=OVERLAY:PLAINTEXT${CONTECO_DC_KAFKA_KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}','KAFKA_INTER_BROKER_LISTENER_NAME=OVERLAY','KAFKA_AUTO_CREATE_TOPICS_ENABLE=true','KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1','KAFKA_LOG_RETENTION_HOURS=1','KAFKA_METRIC_REPORTERS=io.confluent.metrics.reporter.ConfluentMetricsReporter','CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS=kafka:9092','CONFLUENT_METRICS_ENABLE=true','CONFLUENT_SUPPORT_CUSTOMER_ID=anonymous']
     command: []
-    volumes: ['${CONTECO_DC_KAFKA_VOLUMES_NAME}:/var/lib/kafka/data']
+    volumes: ['${CONTECO_TYPE}_kafka_volume:/var/lib/kafka/data']
     ports: [${CONTECO_DC_KAFKA_PORTS}]
-    networks: [${CONTECO_DC_KAFKA_NETWORKS}]
+    networks: [${CONTECO_TYPE}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -39,9 +39,9 @@ services:
         reservations:
           cpus: '${CONTECO_DC_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
           memory: '${CONTECO_DC_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-      labels: [${CONTECO_DC_KAFKA_DEPLOY_LABELS}]
+      labels: []
 # END SERVICE kafka.base
 
-networks: {${CONTECO_DC_GLOBAL_NETWORKS}}
-volumes: {${CONTECO_DC_GLOBAL_VOLUMES}}
+networks: {${CONTECO_TYPE}_overlay: { external: true }}
+volumes: {${CONTECO_TYPE}_kafka_volume: { external: true },${CONTECO_TYPE}_zookeeper_volume: { external: true }}
 
