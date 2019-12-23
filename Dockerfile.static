@@ -1,5 +1,5 @@
 ##### BEGIN image/Dockerfile/image-header #####
-FROM vcwebio/conteco.stack.base AS base
+FROM vcwebio/conteco.image.wrapper AS base
 ##### END image/Dockerfile/image-header #####
 
 ##### BEGIN image/Dockerfile/conteco #####
@@ -9,19 +9,20 @@ COPY ./ /conteco/repo/
 ##### END image/Dockerfile/conteco #####
 
 ##### BEGIN image/Dockerfile/build-instructions #####
-ENV CONTECO_ENTRYPOINT "bash"
 ##### END image/Dockerfile/build-instructions #####
 
 ##### BEGIN image/Dockerfile/env-labels-footer #####
-ENV CONTECO_NAME="kz" \
+ENV CONTECO_TYPE="stack" \
+    CONTECO_NAME="kz" \
     CONTECO_TAG="v1.0.0" \
-    CONTECO_BASE="stack.base" \
+    CONTECO_BASE="image.wrapper" \
     CONTECO_BUILD="image"
-LABEL io.vcweb.name="kz" \
+LABEL io.vcweb.type="stack" \
+      io.vcweb.name="kz" \
       io.vcweb.tag="v1.0.0" \
-      io.vcweb.base="stack.base" \
+      io.vcweb.base="image.wrapper" \
       io.vcweb.build="image" \
-      io.vcweb.label="Conteco base KZ stack" \
-      io.vcweb.description="The ContEco base KZ stack." \
-      io.vcweb.docker.cmd.help="docker run vcwebio/conteco.stack.kz --help" 
+      io.vcweb.label="stack.kz - ContEco" \
+      io.vcweb.description="KZ Stack image, consisting of Kafka and Zookeeper." \
+      io.vcweb.docker.cmd.help="docker run vcwebio/conteco.stack.kz --help"
 ##### END image/Dockerfile/env-labels-footer #####

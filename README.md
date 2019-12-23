@@ -1,11 +1,14 @@
-# The Conteco base KZ stack
+# `stack.kz` - ContEco
 
-The base KZ stack stack. 
+KZ Stack image, consisting of Kafka and Zookeeper.
+See `conteco.docs.overview` for more information on the ContEco ecosystem.
 
-## Modifications
+## Configuration
 
-None.
+The stack consists of the following services:
+* Kafka - kafka.base
+* Zookeeper - zookeeper.base
 
 ## Tags
 
-* v1.0.0 
+* v1.0.0
