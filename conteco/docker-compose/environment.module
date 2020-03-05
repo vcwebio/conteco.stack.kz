@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # START CONFIGURATION
-export CONTECO_DC_GLOBAL_STACKS="stack.kz"
+export CONTECO_DC_GLOBAL_PACKAGE_CONTECO="stack.kz"
 export CONTECO_DC_GLOBAL_STACKNAMES="kz"
 export CONTECO_DC_GLOBAL_BOOTSTACKS="kz"
 export CONTECO_DC_GLOBAL_RUNSTACKS=""
-export CONTECO_DC_GLOBAL_VOLUME_LIST="conteco_dc_kafka_volume,conteco_dc_zookeeper_volume"
+export CONTECO_DC_GLOBAL_VOLUME_LIST="${CONTECO_STACKPREFIX}_kafka_volume,${CONTECO_STACKPREFIX}_zookeeper_volume"
 # END CONFIGURATION
 
 # START OTHER VARIABLES
