@@ -6,14 +6,14 @@ export CONTECO_DC_GLOBAL_STACKS="stack.kz"
 export CONTECO_DC_GLOBAL_STACKNAMES="conteco_dc_kz"
 export CONTECO_DC_GLOBAL_BOOTSTACKS="conteco_dc_kz"
 export CONTECO_DC_GLOBAL_RUNSTACKS=""
-export CONTECO_DC_GLOBAL_VOLUME_LIST="${DOLLAR}{CONTECO_STACKPREFIX}_kafka_volume,${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_volume"
+export CONTECO_DC_GLOBAL_VOLUME_LIST="${DOLLAR}{CONTECO_STACKPREFIX}_kafka_secrets_volume,${DOLLAR}{CONTECO_STACKPREFIX}_kafka_data_volume,${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_secrets_volume,${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_data_volume,${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_log_volume"
 # END CONFIGURATION
 
 # START GLOBAL SETTINGS
 export CONTECO_DC_GLOBAL='$CONTECO_DC_GLOBAL_VOLUMES,$CONTECO_DC_GLOBAL_NETWORKS'
 export CONTECO_DC_GLOBAL_STACK_STACKS='kafka.base,zookeeper.base'
 export CONTECO_DC_GLOBAL_STACK_STACKNAMES="conteco_dc_kafka,conteco_dc_zookeeper"
-export CONTECO_DC_GLOBAL_VOLUMES="${DOLLAR}{CONTECO_STACKPREFIX}_kafka_volume: { external: true },${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_volume: { external: true }"
+export CONTECO_DC_GLOBAL_VOLUMES="${DOLLAR}{CONTECO_STACKPREFIX}_kafka_secrets_volume: { external: true },${DOLLAR}{CONTECO_STACKPREFIX}_kafka_data_volume: { external: true },${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_secrets_volume: { external: true },${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_data_volume: { external: true },${DOLLAR}{CONTECO_STACKPREFIX}_zookeeper_log_volume: { external: true }"
 export CONTECO_DC_GLOBAL_NETWORKS="${DOLLAR}{CONTECO_NETWORKLOCAL}_overlay: { external: true }"
 # END GLOBAL SETTINGS
 
