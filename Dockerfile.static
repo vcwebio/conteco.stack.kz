@@ -14,12 +14,12 @@ COPY ./ /conteco/repo/
 ##### BEGIN image/Dockerfile/env-labels-footer #####
 ENV CONTECO_TYPE="stack" \
     CONTECO_NAME="kz" \
-    CONTECO_TAG="v1.0.0" \
+    CONTECO_TAG="5.4.0" \
     CONTECO_BASE="image.wrapper" \
     CONTECO_BUILD="image"
 LABEL io.vcweb.type="stack" \
       io.vcweb.name="kz" \
-      io.vcweb.tag="v1.0.0" \
+      io.vcweb.tag="5.4.0" \
       io.vcweb.base="image.wrapper" \
       io.vcweb.build="image" \
       io.vcweb.label="stack.kz - ContEco" \
