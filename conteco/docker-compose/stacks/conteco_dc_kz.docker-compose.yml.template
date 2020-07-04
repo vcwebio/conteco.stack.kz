@@ -14,15 +14,10 @@ services:
       mode: replicated
       resources:
         limits:
-          cpus: '${CONTECO_DC_KZ_KAFKA_DEPLOY_RESOURCES_LIMITS_CPUS}'
           memory: '${CONTECO_DC_KZ_KAFKA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
-          cpus: '${CONTECO_DC_KZ_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
           memory: '${CONTECO_DC_KZ_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-      placement:
-        constraints: [${CONTECO_DC_KZ_KAFKA_DEPLOY_PLACEMENT_CONSTRAINTS}]
-      ${CONTECO_DC_KZ_BASH_DEPLOY_EXTENSIONS}
-    ${CONTECO_DC_KZ_BASH_SERVICE_EXTENSIONS}
+${CONTECO_DC_KZ_KAFKA_COMPOSE_EXTENSIONS}
 # END SERVICE kafka.base
 
 # START SERVICE zookeeper.base
@@ -50,4 +45,5 @@ services:
 
 networks: {${CONTECO_DC_GLOBAL_NETWORKS}}
 volumes: {${CONTECO_DC_GLOBAL_VOLUMES}}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}
 
